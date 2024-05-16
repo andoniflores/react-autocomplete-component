@@ -1,0 +1,1 @@
+type Display = "none" | "block";

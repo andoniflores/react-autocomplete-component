@@ -1,0 +1,8 @@
+* {
+  background: #353535;
+  color: #ffffff;
+}
+.my-div {
+  display: flex;
+  justify-content: space-around;
+}
