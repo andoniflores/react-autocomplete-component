@@ -1,19 +1,20 @@
 import "./App.css";
 import Autocomplete from "./components/Autocomplete";
+import { getTracks } from "./api/tracks";
+import { useEffect, useState } from "react";
 
-const data: Song[] = [
-  { songname: "Sweet Home Alabama", artist: "Lynyrd Skynrd" },
-  { songname: "i", artist: "Kendrick Lamar" },
-  { songname: "Sweet Caroline", artist: "Neil Diamond" },
-];
-function App() {
+export default function App() {
+  const [trackList, setTrackList] = useState<Track[]>();
+  useEffect(() => {
+    getTracks().then((tracks) => {
+      setTrackList(tracks);
+    });
+  }, []);
   return (
     <>
       <div className="my-div">
-        <Autocomplete data={data} />
+        {trackList ? <Autocomplete data={trackList} /> : null}
       </div>
     </>
   );
 }
-
-export default App;

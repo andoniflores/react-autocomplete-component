@@ -1,29 +1,29 @@
 import "./Autocomplete.css";
 import { useEffect, useState } from "react";
 
-export default function Autocomplete({ data }: { data: Song[] }) {
-  const [showSongList, setShowSongList] = useState<Display>("none");
+export default function Autocomplete({ data }: { data: Track[] }) {
+  const [showTrackList, setShowTrackList] = useState<Display>("none");
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filteredSongs, setFilteredSongs] = useState<Song[] | []>([]);
+  const [filteredTracks, setFilteredTracks] = useState<Track[] | []>([]);
   const divDisplay = {
-    display: showSongList,
+    display: showTrackList,
   };
   useEffect(() => {
-    filterSongs();
+    filterTracks();
   }, [searchTerm]);
 
   function searchBarFocus() {
-    setShowSongList("block");
+    setShowTrackList("block");
   }
   function searchBarBlur() {
-    setShowSongList("none");
+    setShowTrackList("none");
   }
-  function filterSongs() {
-    let filterSongs = [];
-    filterSongs = data.filter((song) =>
-      song.songname.toLowerCase().includes(searchTerm.toLowerCase()),
+  function filterTracks() {
+    let filterTracks = [];
+    filterTracks = data.filter((song) =>
+      song.track.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
-    setFilteredSongs(filterSongs);
+    setFilteredTracks(filterTracks);
   }
   function handleKeyUp(e: any) {
     setSearchTerm(e.target.value);
@@ -42,8 +42,8 @@ export default function Autocomplete({ data }: { data: Song[] }) {
       </div>
       <div id="songlist" style={divDisplay}>
         <ul>
-          {filteredSongs.map((song) => {
-            return <li>{song.songname}</li>;
+          {filteredTracks.map((song) => {
+            return <li key={song.track.name}>{song.track.name}</li>;
           })}
         </ul>
       </div>
