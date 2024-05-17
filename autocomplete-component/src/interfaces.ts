@@ -26,3 +26,7 @@ interface ApiResponse {
 interface Track {
   track: TrackDetails;
 }
+interface TrackCardProps {
+  data: TrackDetails;
+  searchTerm: string;
+}

@@ -1,5 +1,6 @@
 import "./Autocomplete.css";
 import { useEffect, useState } from "react";
+import TrackCard from "./TrackCard";
 
 export default function Autocomplete({ data }: { data: Track[] }) {
   const [showTrackList, setShowTrackList] = useState<Display>("none");
@@ -10,7 +11,7 @@ export default function Autocomplete({ data }: { data: Track[] }) {
   };
   useEffect(() => {
     filterTracks();
-  }, [searchTerm]);
+  }, [searchTerm, setSearchTerm]);
 
   function searchBarFocus() {
     setShowTrackList("block");
@@ -30,22 +31,23 @@ export default function Autocomplete({ data }: { data: Track[] }) {
   }
 
   return (
-    <div>
-      <div>
-        <input
-          id="searchbar"
-          type="search"
-          onFocus={searchBarFocus}
-          onBlur={searchBarBlur}
-          onKeyUp={handleKeyUp}
-        />
-      </div>
+    <div
+      tabIndex={0}
+      style={{ width: "400px", border: "3px solid green" }}
+      onFocus={searchBarFocus}
+      onBlur={searchBarBlur}
+    >
+      <input id="searchbar" type="search" onKeyUp={handleKeyUp} />
       <div id="songlist" style={divDisplay}>
-        <ul>
-          {filteredTracks.map((song) => {
-            return <li key={song.track.name}>{song.track.name}</li>;
-          })}
-        </ul>
+        {filteredTracks.map((song) => {
+          return (
+            <TrackCard
+              key={song.track.name}
+              data={song.track}
+              searchTerm={searchTerm}
+            />
+          );
+        })}
       </div>
     </div>
   );
