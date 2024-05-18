@@ -1,9 +1,36 @@
 #searchbar {
-  border: 3px solid #3c6e71;
+  border: 1px solid #858585;
+  color: #d3d3d3;
   border-radius: 10px;
   height: 30px;
-  width: 400px;
+  width: 488px;
+  background: inherit;
+  padding: 5px;
 }
 #searchbar:focus {
   outline: none;
+}
+::placeholder {
+  text-align: center;
+  color: #aaaaaa;
+}
+#songlist {
+  flex-wrap: wrap;
+  height: 500px;
+  overflow-y: auto;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+.trackListActive {
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+}
+.trackListHidden {
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+.search-container {
+  width: 500px;
 }

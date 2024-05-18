@@ -1,8 +1,31 @@
 * {
-  background: #353535;
+  background: #1b1b1b;
   color: #ffffff;
+  font-family: "Roboto";
+  font-weight: 400;
 }
 .my-div {
   display: flex;
   justify-content: space-around;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #858585;
+  border-radius: 0px 5px 5px 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #343434;
+  border-radius: 0px 5px 5px 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(128.87deg, #ff8b01 14.05%, #cb4150 89.3%);
 }

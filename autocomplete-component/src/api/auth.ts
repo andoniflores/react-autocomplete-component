@@ -1,7 +1,7 @@
 export async function authorize() {
   let token_expired_by = localStorage.getItem("expired_by");
   if (token_expired_by == null || parseInt(token_expired_by) < Date.now()) {
-    get_access_tokens();
+    return get_access_tokens();
   }
 }
 async function get_access_tokens() {
@@ -25,4 +25,5 @@ async function get_access_tokens() {
     "expired_by",
     (parseInt(resJSON.expires_in) * 1000 + Date.now()).toString(),
   );
+  return resJSON;
 }

@@ -1,1 +1,1 @@
-type Display = "none" | "block";
+type Display = "trackListActive" | "trackListHidden";

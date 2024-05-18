@@ -9,7 +9,7 @@ export default function TrackCard({ data, searchTerm }: TrackCardProps) {
     if (start != -1) {
       let end = start + searchTerm.length - 1;
       return (
-        <div>
+        <div className="trackname-container">
           <span>{name.slice(0, start)}</span>
           <span className="highlight-search">{name.slice(start, end + 1)}</span>
           <span>{name.slice(end + 1, name.length)}</span>
@@ -29,35 +29,38 @@ export default function TrackCard({ data, searchTerm }: TrackCardProps) {
   }
   return (
     <div className="track-card">
-      <div className="image-container">
-        {data.album.images.map((image) => {
-          if (image.height == 64) {
-            return (
-              <div>
-                {data.preview_url ? (
-                  <div className="playable" onClick={playTrack}>
-                    <img key={image.url} src={image.url} />
-                  </div>
-                ) : (
-                  <img key={image.url} src={image.url} />
-                )}
-              </div>
-            );
-          }
-        })}
-      </div>
+      {data.album.images.map((image) => {
+        if (image.height == 64) {
+          return (
+            <div className="image-container">
+              {data.preview_url ? (
+                <div className="playable" onClick={playTrack}>
+                  <img
+                    className="playable-img"
+                    key={image.url}
+                    src={image.url}
+                  />
+                </div>
+              ) : (
+                <img key={image.url} src={image.url} />
+              )}
+            </div>
+          );
+        }
+      })}
       <div className="track-artist-container">
         <div className="trackname-container">{highlight(data.name)}</div>
-        <div className="artist-container"></div>
-        {data.artists.map((artist) => {
-          if (
-            data.artists.length == 1 ||
-            data.artists[data.artists.length - 1] == artist
-          ) {
-            return artist.name;
-          }
-          return artist.name + ", ";
-        })}
+        <div className="artist-container">
+          {data.artists.map((artist) => {
+            if (
+              data.artists.length == 1 ||
+              data.artists[data.artists.length - 1] == artist
+            ) {
+              return artist.name;
+            }
+            return artist.name + ", ";
+          })}
+        </div>
       </div>
       <div>
         {data.preview_url ? (

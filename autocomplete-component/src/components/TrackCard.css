@@ -1,24 +1,36 @@
 .track-card {
-  border: 2px solid white;
-  border-radius: 10px;
   width: inherit;
   padding: 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
   display: flex;
+  background: #343434;
+  border: 1px solid #858585;
 }
-.image-container {
-  width: 68px;
-  height: 68px;
+span {
+  background: inherit;
 }
 .track-artist-container {
   display: flex;
   flex-direction: column;
   padding: 5px;
   flex-wrap: wrap;
+  background: inherit;
+  justify-content: space-around;
+}
+.artist-container {
+  font-size: 12px;
+  background: inherit;
+  color: #afafaf;
+}
+.trackname-container {
+  background: inherit;
+}
+.image-container {
+  border-radius: 5px;
+  width: 64px;
+  height: 64px;
+  z-index: 0;
 }
 img {
-  border-radius: 5px;
   animation-name: smaller;
   animation-duration: 0.1s;
   animation-timing-function: linear;
@@ -44,12 +56,20 @@ img {
     height: 68px;
   }
 }
-img:hover {
+.playable-img:hover {
   animation-name: bigger;
   animation-duration: 0.1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
 .highlight-search {
-  background-color: red;
+  font-weight: bold;
+  background: linear-gradient(128.87deg, #ff8b01 14.05%, #cb4150 89.3%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.playable {
+  height: 64px;
+  cursor: pointer;
 }

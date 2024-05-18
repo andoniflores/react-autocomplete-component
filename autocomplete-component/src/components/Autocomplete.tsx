@@ -3,21 +3,23 @@ import { useEffect, useState } from "react";
 import TrackCard from "./TrackCard";
 
 export default function Autocomplete({ data }: { data: Track[] }) {
-  const [showTrackList, setShowTrackList] = useState<Display>("none");
+  const [showTrackList, setShowTrackList] =
+    useState<Display>("trackListHidden");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredTracks, setFilteredTracks] = useState<Track[] | []>([]);
-  const divDisplay = {
-    display: showTrackList,
-  };
   useEffect(() => {
     filterTracks();
   }, [searchTerm, setSearchTerm]);
 
+  function divDisplay(): string {
+    return showTrackList;
+  }
+
   function searchBarFocus() {
-    setShowTrackList("block");
+    setShowTrackList("trackListActive");
   }
   function searchBarBlur() {
-    setShowTrackList("none");
+    setShowTrackList("trackListHidden");
   }
   function filterTracks() {
     let filterTracks = [];
@@ -32,13 +34,18 @@ export default function Autocomplete({ data }: { data: Track[] }) {
 
   return (
     <div
+      className="search-container"
       tabIndex={0}
-      style={{ width: "400px", border: "3px solid green" }}
       onFocus={searchBarFocus}
       onBlur={searchBarBlur}
     >
-      <input id="searchbar" type="search" onKeyUp={handleKeyUp} />
-      <div id="songlist" style={divDisplay}>
+      <input
+        id="searchbar"
+        placeholder={"search songs name 🔍"}
+        type="text"
+        onKeyUp={handleKeyUp}
+      />
+      <div id="songlist" className={divDisplay()}>
         {filteredTracks.map((song) => {
           return (
             <TrackCard
