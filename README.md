@@ -4,7 +4,7 @@ This is a react autocomplete component created in the context of PagerDuty onlin
 
 ## ⚙️ How to run
 
-- Clone the project from github
-- Navigate to autocomplete-component/ directory
-- run `npm run dev`
-- Manually test the component served on localhost
+1. Clone the project from github
+2. Navigate to autocomplete-component/ directory
+3. run `npm run dev`
+4. Manually test the component served on localhost
