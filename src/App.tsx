@@ -6,18 +6,27 @@ import { authorize } from "./api/auth";
 
 export default function App() {
   const [trackList, setTrackList] = useState<Track[]>();
+  const [isValid, setIsValid] = useState<boolean>(true);
   useEffect(() => {
     authorize().then((response) => {
-      console.log(response);
-      getTracks().then((tracks) => {
-        setTrackList(tracks);
-      });
+      if (!("error" in response)) {
+        getTracks().then((tracks) => {
+          setTrackList(tracks);
+        });
+      } else {
+        setIsValid(false);
+      }
     });
   }, []);
   return (
     <>
       <div className="my-div">
         {trackList ? <Autocomplete data={trackList} /> : null}
+        {isValid ? null : (
+          <div>
+            Spotify Client is not valid, check Client ID and Client Secret
+          </div>
+        )}
       </div>
     </>
   );

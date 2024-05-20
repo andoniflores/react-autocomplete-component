@@ -29,3 +29,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(128.87deg, #ff8b01 14.05%, #cb4150 89.3%);
 }
+.invalid-client {
+  display: none;
+}
+.valid-client {
+  display: block;
+}

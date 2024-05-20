@@ -3,6 +3,7 @@ export async function authorize() {
   if (tokenExpiredBy == null || parseInt(tokenExpiredBy) < Date.now()) {
     return getAccessTokens();
   }
+  return { status: "ok" };
 }
 async function getAccessTokens() {
   let response: Response = await fetch(
@@ -20,10 +21,14 @@ async function getAccessTokens() {
     },
   );
   let resJSON: AuthResponse = await response.json();
-  localStorage.setItem("access_token", resJSON.access_token);
-  localStorage.setItem(
-    "expired_by",
-    (parseInt(resJSON.expires_in) * 1000 + Date.now()).toString(),
-  );
+  console.log("resJSON");
+  console.log(resJSON);
+  if (!("error" in resJSON)) {
+    localStorage.setItem("access_token", resJSON.access_token);
+    localStorage.setItem(
+      "expired_by",
+      (parseInt(resJSON.expires_in) * 1000 + Date.now()).toString(),
+    );
+  }
   return resJSON;
 }
