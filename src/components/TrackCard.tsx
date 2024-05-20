@@ -17,14 +17,25 @@ export default function TrackCard({ data, searchTerm }: TrackCardProps) {
       );
     }
   }
+  function pauseTrack(el: HTMLAudioElement) {
+    el.pause();
+    el.currentTime = 0;
+  }
+  function pauseOtherTracks(el: HTMLAudioElement) {
+    document.querySelectorAll("audio").forEach((elem: HTMLAudioElement) => {
+      if (elem !== el) {
+        pauseTrack(elem);
+      }
+    });
+  }
   function playTrack() {
     let el = document.getElementById(data.name) as HTMLAudioElement;
     if (el == null) return;
+    pauseOtherTracks(el);
     if (el.paused) {
       el.play();
     } else {
-      el.pause();
-      el.currentTime = 0;
+      pauseTrack(el);
     }
   }
   return (
