@@ -24,13 +24,16 @@
 .trackListActive {
   transition: opacity 0.5s ease-out;
   opacity: 1;
+  visibility: visible;
 }
 .trackListHidden {
   transition: opacity 0.5s ease-out;
   opacity: 0;
   height: 0;
+  visibility: hidden;
   overflow: hidden;
 }
 .search-container {
   width: 500px;
+  height: 0;
 }
