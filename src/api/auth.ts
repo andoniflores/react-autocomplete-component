@@ -1,10 +1,10 @@
 export async function authorize() {
-  let token_expired_by = localStorage.getItem("expired_by");
-  if (token_expired_by == null || parseInt(token_expired_by) < Date.now()) {
-    return get_access_tokens();
+  let tokenExpiredBy = localStorage.getItem("expired_by");
+  if (tokenExpiredBy == null || parseInt(tokenExpiredBy) < Date.now()) {
+    return getAccessTokens();
   }
 }
-async function get_access_tokens() {
+async function getAccessTokens() {
   let response: Response = await fetch(
     "https://accounts.spotify.com/api/token",
     {
