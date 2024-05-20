@@ -17,5 +17,6 @@ In order to use this component we need to authorize our app with Spotify to achi
 
 1. Clone the project from github
 2. Navigate to the project directory
-3. run `npm install` and then `npm run dev`
-4. Manually test the component served on localhost
+3. Fill .env file with Client ID and Client Secret previously gathered
+4. Run `npm install` and then `npm run dev`
+5. Manually test the component served on localhost
