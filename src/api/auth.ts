@@ -21,8 +21,6 @@ async function getAccessTokens() {
     },
   );
   let resJSON: AuthResponse = await response.json();
-  console.log("resJSON");
-  console.log(resJSON);
   if (!("error" in resJSON)) {
     localStorage.setItem("access_token", resJSON.access_token);
     localStorage.setItem(
